@@ -32,11 +32,14 @@ dstop() { docker stop $(docker ps -a -q); }
 # Remove all containers
 drm() { docker rm $(docker ps -a -q); }
 
+# remove all dangling volumes
+drmv() { docker volume rm $(docker volume ls -q -f dangling=true) }
+
 # Stop and Remove all containers
 alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 
 # Remove all images
-dri() { docker rmi $(docker images -q); }
+drmi() { docker rmi $(docker images -q); }
 
 # Dockerfile build, e.g., $dbu tcnksm/test 
 dbu() { docker build -t=$1 .; }
