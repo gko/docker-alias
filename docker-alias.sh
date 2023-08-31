@@ -30,16 +30,16 @@ alias dex="docker exec -i -t"
 dstop() { docker stop $(docker ps -a -q); }
 
 # Remove all containers
-drm() { docker rm $(docker ps -a -q); }
+drm() { docker rm -vf $(docker ps -a -q); }
 
 # remove all dangling volumes
-drmv() { docker volume rm $(docker volume ls -q -f dangling=true) }
+drmv() { docker volume rm -f $(docker volume ls -q -f dangling=true) }
 
 # Stop and Remove all containers
 alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 
 # Remove all images
-drmi() { docker rmi $(docker images -q); }
+drmi() { docker rmi -f $(docker images -q); }
 
 # Dockerfile build, e.g., $dbu tcnksm/test 
 dbu() { docker build -t=$1 .; }
