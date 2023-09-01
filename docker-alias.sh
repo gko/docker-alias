@@ -1,5 +1,5 @@
 # ------------------------------------
-# Docker alias and function
+# Docker aliases and functions
 # ------------------------------------
 
 # Get latest container ID
@@ -21,25 +21,31 @@ alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
 alias dkd="docker run -d -P"
 
 # Run interactive container, e.g., $dki base /bin/bash
-alias dki="docker run -i -t -P"
+alias dki="docker run -it -P"
 
 # Execute interactive container, e.g., $dex base /bin/bash
-alias dex="docker exec -i -t"
+alias dex="docker exec -it"
 
 # Stop all containers
-dstop() { docker stop $(docker ps -a -q); }
+alias dstop="docker stop \$(docker ps -aq)"
 
 # Remove all containers
-drm() { docker rm -vf $(docker ps -a -q); }
+alias drm="docker rm -v \$(docker ps -aq)"
 
-# remove all dangling volumes
-drmv() { docker volume rm -f $(docker volume ls -q -f dangling=true) }
+# Show dangling volumes
+alias dangling="docker volume ls -qf dangling=true"
 
-# Stop and Remove all containers
-alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
+# Remove all dangling volumes
+alias drmv="docker volume rm -f \$(docker volume ls -qf dangling=true)"
+
+# Force stop and remove all containers
+alias drmf="docker rm -vf \$(docker stop \$(docker ps -aq))"
 
 # Remove all images
-drmi() { docker rmi -f $(docker images -q); }
+alias drmi="docker rmi \$(docker image ls -aq)"
+
+# Force remove all images(removes also images of )
+alias drmif="docker rmi -f \$(docker image ls -aq)"
 
 # Dockerfile build, e.g., $dbu tcnksm/test 
 dbu() { docker build -t=$1 .; }
