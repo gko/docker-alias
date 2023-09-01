@@ -32,14 +32,14 @@ alias dstop="docker stop \$(docker ps -aq)"
 # Remove all containers
 alias drm="docker rm -v \$(docker ps -aq)"
 
+# Force stop and remove all containers
+alias drmf="docker rm -vf \$(docker stop \$(docker ps -aq))"
+
 # Show dangling volumes
 alias dangling="docker volume ls -qf dangling=true"
 
 # Remove all dangling volumes
 alias drmv="docker volume rm -f \$(docker volume ls -qf dangling=true)"
-
-# Force stop and remove all containers
-alias drmf="docker rm -vf \$(docker stop \$(docker ps -aq))"
 
 # Remove all images
 alias drmi="docker rmi \$(docker image ls -aq)"
