@@ -47,6 +47,12 @@ alias drmi="docker rmi \$(docker image ls -aq)"
 # Force remove all images(removes also images of )
 alias drmif="docker rmi -f \$(docker image ls -aq)"
 
+# Remove all unused networks
+alias drmn="docker network prune"
+
+# Force remove all unused networks
+alias drmnf="docker network prune -f"
+
 # Dockerfile build, e.g., $dbu tcnksm/test 
 dbu() { docker build -t=$1 .; }
 
