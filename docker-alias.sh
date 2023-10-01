@@ -26,6 +26,9 @@ alias dki="docker run -it -P"
 # Execute interactive container, e.g., $dex base /bin/bash
 alias dex="docker exec -it"
 
+# Copy file from container
+alias dcp="docker cp"
+
 # Stop all containers
 alias dstop="docker stop \$(docker ps -aq)"
 
