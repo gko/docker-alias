@@ -2,6 +2,9 @@
 # Docker aliases and functions
 # ------------------------------------
 
+# docker compose
+alias dcmp="docker compose"
+
 # Get latest container ID
 alias dl="docker ps -l -q"
 
