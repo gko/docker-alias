@@ -66,7 +66,7 @@ dbu() { docker build -t=$1 .; }
 dalias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
 
 # Bash into running container
-dbash() { docker exec -it $(docker ps -aqf "name=$1") bash; }
+dbash() { docker exec -it $@ bash; }
 
 # shell into running container. Some images don't have bash
-dsh() { docker exec -it $(docker ps -aqf "name=$1") sh; }
+dsh() { docker exec -it $@ sh; }
